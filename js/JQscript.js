@@ -14,10 +14,16 @@ function animateDateTimeObj() {
 
 }
 
+function usePopulation(){
+
+}
+
 function calculatePopulation() {
     console.log("perBevoelkerung");
     $("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
-    //$("#perBevoelkerung").removeClass("btn-danger").addClass("btn-primary");
+    $("#symbol").toggleClass("fa-times").toggleClass("fa-check");
+    update();
+
 }
 
 function numberChange() {
@@ -135,6 +141,12 @@ function getGB(json, canton) {
             ret = count;
         }
     });
+    if ($("#perBevoelkerung").hasClass("btn-primary")){
+        console.log("mit einbeziehen");
+        ret = ret / einwohner(canton.toLowerCase());
+    }else{
+        console.log("nicht mit einbeziehen");
+    }
 //    ret = ret / einwohner(canton.toLowerCase());
     return Math.round(ret * 100) / 100;
 }
