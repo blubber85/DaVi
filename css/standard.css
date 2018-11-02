@@ -1,0 +1,47 @@
+#container {
+    height: 500px;
+    min-width: 310px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+
+#uhrzeit {
+    text-align: center;
+    font-size: large;
+
+}
+
+#diaShowButton{
+    margin-top: 10px;
+}
+
+input[type="range"] {
+    margin: 10px 0 0 0;
+}
+
+label {
+    margin: 6px 0 0 0 ;
+}
+
+#jumbotronBox{
+    padding: 30px 30px;
+}
+
+#perBevoelkerung{
+    margin: 10px 0px;
+}
+
+/*
+.form-group{
+    background-color: lightblue;
+}
+
+.form-group .row{
+    border: #0b2e13 solid 1px;
+}*/

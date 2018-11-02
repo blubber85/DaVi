@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Karte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../css/standard.css">
+</head>
+<body>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/ch/ch-all.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<div class="container">
+
+    <div class="jumbotron text-center" id="jumbotronBox">
+        <h1>Swisscom: Download mobiler Daten pro Kanton und Stunde in GB</h1>
+        <p id="dateTime"><label for="day" id="day">Datum: 2017-07-01</label>
+            <label for="time" id="time">Uhrzeit 01:00</label></p>
+
+    </div>
+
+    <div id="mapcontainer"></div>
+
+
+    <form>
+
+        <div class="form-group">
+
+
+  <!--          <button type="button" id="perBevoelkerung" class="btn btn-danger btn-lg btn-block" onclick="calculatePopulation()"> GB Download durch Be&ouml;lkerung rechnen <i class="fa fa-times" aria-hidden="true"></i></button>-->
+            <div class="form-group row">
+                <label for="numberDay" class="col-sm-1 col-form-label">Tag:</label>
+                <div class="col-sm-1">
+                    <input type="number" class="form-control" id="numberDay" value="1" onchange="numberChange()">
+                </div>
+                <div class="col-sm-10">
+                    <input type="range" class="form-control-range" id="rangeDay" max="31" min="1"
+                           onchange="rangeChange()"
+                           value="1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="numberHour" class="col-sm-1 col-form-label">Stunde:</label>
+                <div class="col-sm-1">
+                    <input type="number" class="form-control" id="numberHour" placeholder="01"
+                           onchange="numberChange()">
+                </div>
+                <div class="col-sm-10">
+                    <input type="range" class="form-control-range" id="rangeHour" max="23" min="0"
+                           onchange="rangeChange()"
+                           value="0"></div>
+            </div>
+
+        </div>
+        <!--<div class="col-sm-12">
+            <div class="form-group row">
+                <input type="range" class="form-control-range" id="rangeDay" max="31" min="1"
+                       onchange="rangeChange()"
+                       value="1"></div>
+            <div class="form-group row">
+                <input type="range" class="form-control-range" id="rangeHour" max="23" min="0"
+                       onchange="rangeChange()"
+                       value="0"></div>
+        </div>-->
+        <!--<button type="button" id="diaShowButton" class="btn btn-primary btn-lg btn-block" onclick="diashow()"><i class="fa fa-play"></i></span>  Diashow</button>-->
+</div>
+</form>
+
+</div>
+
+<script src="../js/bevoelkerung.js"></script>
+<script src="../js/JQscript.js"></script>
+
+</body>
+</html>
