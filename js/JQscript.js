@@ -16,7 +16,6 @@ function animateDateTimeObj() {
 
 
 function calculatePopulation() {
-    console.log("perBevoelkerung");
     $("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
     $("#symbol").toggleClass("fa-times").toggleClass("fa-check");
     update();
@@ -87,6 +86,16 @@ function getDateTimeStr() {
     return date + " " + time;
 }
 
+function mapTooltip() {
+    console.log("mapTooltip");
+    // bewohner miteinbeziehen
+    if ($("#perBevoelkerung").hasClass("btn-primary")) {
+        console.log("tre");
+        return ' GB pro 1000 Pers.';
+    }
+    return ' GB';
+}
+
 function requestData(dateTimeObj) {
     let url = "https://opendata.swisscom.com/api/records/1.0/search/?dataset=effektiver-datendownload-pro-kanton-und-stunde-de&rows=30&facet=canton&refine.timestamp_hour=";
     url += dateTimeObj.date;
@@ -125,6 +134,11 @@ function requestData(dateTimeObj) {
         console.log(cantons);
         chart.series[0].setData(cantons, true);
         chart.series[0].setName(getDateTimeStr(), true);
+        chart.series[0].update({
+            tooltip: {
+                valueSuffix: mapTooltip()
+            }
+        });
         chart.redraw();
     });
 }
@@ -138,27 +152,23 @@ function getGB(json, canton) {
             ret = count;
         }
     });
-    if ($("#perBevoelkerung").hasClass("btn-primary")){
-        console.log("mit einbeziehen");
+    if ($("#perBevoelkerung").hasClass("btn-primary")) {
         ret = ret / einwohner(canton.toLowerCase());
-    }else{
-        console.log("nicht mit einbeziehen");
     }
-//    ret = ret / einwohner(canton.toLowerCase());
     return Math.round(ret * 100) / 100;
 }
 
 $(document).ready(function () {
     console.log("ready");
     rangeChange();
-    bevoelerkung.data.forEach(function(canton){
-        $("tbody").append('<tr> <td>'+canton["kt"].toUpperCase()+'</td> <td>'+canton["einwohner"]+'</td> </tr>');
+    bevoelerkung.data.forEach(function (canton) {
+        $("tbody").append('<tr> <td>' + canton["kt"].toUpperCase() + '</td> <td>' + canton["einwohner"] + '</td> </tr>');
     });
     $("table").hide();
 
 });
 
-function toggleTable(){
+function toggleTable() {
     $("table").toggle("slow");
 }
 
@@ -228,8 +238,12 @@ let chart = Highcharts.mapChart('mapcontainer', {
         dataLabels: {
             enabled: true,
             format: '{point.name}'
+        },
+        tooltip: {
+            valueSuffix: mapTooltip()
         }
     }]
 });
+
 
 
