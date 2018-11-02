@@ -14,9 +14,6 @@ function animateDateTimeObj() {
 
 }
 
-function usePopulation(){
-
-}
 
 function calculatePopulation() {
     console.log("perBevoelkerung");
@@ -154,7 +151,16 @@ function getGB(json, canton) {
 $(document).ready(function () {
     console.log("ready");
     rangeChange();
+    bevoelerkung.data.forEach(function(canton){
+        $("tbody").append('<tr> <td>'+canton["kt"].toUpperCase()+'</td> <td>'+canton["einwohner"]+'</td> </tr>');
+    });
+    $("table").hide();
+
 });
+
+function toggleTable(){
+    $("table").toggle("slow");
+}
 
 let chart = Highcharts.mapChart('mapcontainer', {
     chart: {

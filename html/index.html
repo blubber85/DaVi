@@ -27,14 +27,34 @@
     </div>
 
     <div id="mapcontainer"></div>
+    <div class="row" id="buttons">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-success btn-lg btn-block" onclick="toggleTable()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                Bev&ouml;lkerung
+            </button>
+        </div>
+        <div class="col-sm-9">
+            <button type="button" id="perBevoelkerung" class="btn btn-danger btn-lg btn-block"
+                    onclick="calculatePopulation()">
+                Bev&ouml;lkerung pro Kanton miteinbeziehen <i id="symbol" class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Kanton</th>
+            <th scope="col">Anzahl Einwohner in Tausend (2016)</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
 
     <form>
-
         <div class="form-group">
-
-
-            <button type="button" id="perBevoelkerung" class="btn btn-danger btn-lg btn-block" onclick="calculatePopulation()"> Be&ouml;lkerung pro Kanton miteinbeziehen <i id="symbol" class="fa fa-times" aria-hidden="true"></i></button>
             <div class="form-group row">
                 <label for="numberDay" class="col-sm-1 col-form-label">Tag:</label>
                 <div class="col-sm-1">

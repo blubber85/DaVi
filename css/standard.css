@@ -33,15 +33,12 @@ label {
     padding: 30px 30px;
 }
 
-#perBevoelkerung{
+#buttons{
     margin: 10px 0px;
 }
 
-/*
-.form-group{
-    background-color: lightblue;
+#buttons > div {
+    padding: 0px 5px;
 }
 
-.form-group .row{
-    border: #0b2e13 solid 1px;
-}*/
+
