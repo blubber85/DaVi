@@ -42,7 +42,7 @@ function update() {
         time = "0" + hour + ":00";
     }
     $("#time").text("Uhrzeit " + time);
-    console.log("Uhrzeit " + time);
+
     let day = $("#rangeDay").val();
     if (day > 9) {
         dateTimeObj.date += day;
@@ -59,16 +59,16 @@ function update() {
     weekday[5] = "Freitag";
     weekday[6] = "Samstag";
     let n = weekday[d.getDay()];
-    $("#day").text("Datum:  " + dateTimeObj.date + " " + n + ",");
+    let dateStr = dateTimeObj.date + " " + n;
+    $("#day").text("Datum:  " + dateStr + ",");
+    $("#tableDatum").text("GB Download am " + dateStr);
     animateDateTimeObj();
-    console.log("Tag " + day);
     requestData(dateTimeObj);
     einwohner("tg");
 }
 
 
 function getDateTimeStr() {
-    console.log("getDateTimeStr");
     let hour = $("#rangeHour").val();
     let time;
     if (hour > 9) {
@@ -87,11 +87,9 @@ function getDateTimeStr() {
 }
 
 function mapTooltip() {
-    console.log("mapTooltip");
     // bewohner miteinbeziehen
     if ($("#perBevoelkerung").hasClass("btn-primary")) {
-        console.log("tre");
-        return ' GB pro 1000 Pers.';
+        return " GB pro 1'000 Pers.";
     }
     return ' GB';
 }
@@ -100,9 +98,17 @@ function requestData(dateTimeObj) {
     let url = "https://opendata.swisscom.com/api/records/1.0/search/?dataset=effektiver-datendownload-pro-kanton-und-stunde-de&rows=30&facet=canton&refine.timestamp_hour=";
     url += dateTimeObj.date;
     url += "T" + dateTimeObj.time;
-    console.log("url: " + url);
+    //  console.log("url: " + url);
 
     $.get(url, function (data) {
+
+        $('table > tbody  > tr').each(function (row) {
+            console.log('#td-' + this.id + " data: " + getGB(data, this.id));
+            $('#td-' + this.id).text(getGB(data, this.id));
+            console.log(this.id);
+        });
+
+
         let cantons = [
             ['ch-fr', getGB(data, "FR")],
             ['ch-ne', getGB(data, "NE")],
@@ -144,11 +150,11 @@ function requestData(dateTimeObj) {
 }
 
 function getGB(json, canton) {
+    console.log("getGB: " + canton);
     let ret = false;
     json["records"].some(element => {
         if (element.fields.canton.toLowerCase() == canton.toLowerCase()) {
             let count = element.fields.effective_bytes_down_per_canton_per_hour_gb;
-            //console.log(element.fields.canton + " " + count);
             ret = count;
         }
     });
@@ -159,10 +165,9 @@ function getGB(json, canton) {
 }
 
 $(document).ready(function () {
-    console.log("ready");
     rangeChange();
     bevoelerkung.data.forEach(function (canton) {
-        $("tbody").append('<tr> <td>' + canton["kt"].toUpperCase() + '</td> <td>' + canton["einwohner"] + '</td> </tr>');
+        $("tbody").append('<tr id=' + canton["kt"].toUpperCase() + ' > <td>' + canton["kt"].toUpperCase() + '</td> <td>' + canton["einwohner"] + '</td> <td id=td-' + canton["kt"].toUpperCase() + '></td></tr>');
     });
     $("table").hide();
 

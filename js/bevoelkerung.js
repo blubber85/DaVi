@@ -114,7 +114,7 @@ function einwohner(canton){
     let ret = 0;
     for (i = 0; i < bevoelerkung.data.length; i++){
         if(canton == bevoelerkung.data[i]["kt"]){
-            console.log(bevoelerkung.data[i]);
+          //  console.log(bevoelerkung.data[i]);
             return bevoelerkung.data[i]["einwohner"];
 
         }
