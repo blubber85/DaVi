@@ -16,8 +16,11 @@ function animateDateTimeObj() {
 
 
 function calculatePopulation() {
-    $("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
-    $("#symbol").toggleClass("fa-times").toggleClass("fa-check");
+    console.log("calculatePopulation: {}",$("input[name='usePopulation']:checked"));
+    var length = $("input[name='usePopulation']:checked").length;
+    console.log("calculatePopulation2: "+length );
+    //$("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
+    //$("#symbol").toggleClass("fa-times").toggleClass("fa-check");
     update();
 
 }
@@ -62,7 +65,7 @@ function update() {
     let dateStr = dateTimeObj.date + " " + n;
     $("#day").text("Datum:  " + dateStr + ",");
     $("#tableDatum").text("GB Download am " + dateStr);
-    animateDateTimeObj();
+    //animateDateTimeObj();
     requestData(dateTimeObj);
     einwohner("tg");
 }
@@ -88,7 +91,7 @@ function getDateTimeStr() {
 
 function mapTooltip() {
     // bewohner miteinbeziehen
-    if ($("#perBevoelkerung").hasClass("btn-primary")) {
+    if ($("input[name='usePopulation']:checked").length) {
         return " GB pro 1'000 Pers.";
     }
     return ' GB';
@@ -158,7 +161,7 @@ function getGB(json, canton) {
             ret = count;
         }
     });
-    if ($("#perBevoelkerung").hasClass("btn-primary")) {
+    if ($("input[name='usePopulation']:checked").length) {
         ret = ret / einwohner(canton.toLowerCase());
     }
     return Math.round(ret * 100) / 100;

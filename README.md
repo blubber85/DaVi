@@ -54,5 +54,5 @@ Anhand der Visualisierung soll der verschiedene Gebrauch des Internets zwischen 
 
 ##Prototyp
 Ein erster
-[Prototyp](http://zueger.li/davi/html/index.html "Daten") 
+[Prototyp](http://zueger.li/davi2/html/index.html "Daten") 
 kann hier begutachtet werden.
