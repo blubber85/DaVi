@@ -5,10 +5,12 @@
     margin: 0 auto;
 }
 
-.loading {
-    margin-top: 10em;
-    text-align: center;
-    color: gray;
+
+table{
+    border: solid 1px ;
+    border-color:rgb(221, 221, 221);
+    margin: 10px 0px;
+
 }
 
 #uhrzeit {
@@ -33,14 +35,12 @@ label {
     padding: 10px 10px;
 }
 
-#buttons{
-    margin: 10px 0px;
-}
 
-#buttons > div {
-    padding: 0px 5px;
-}
 
 #dateTime {
     color: red;
+}
+
+.sliders{
+    margin-top: 10px;
 }

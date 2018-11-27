@@ -19,29 +19,25 @@
 
 
 <div class="container">
-
     <div class="jumbotron text-center" id="jumbotronBox">
         <h2>Swisscom: Download mobiler Daten pro Kanton und Stunde in GB</h2>
         <p id="dateTime"><label for="day" id="day">Datum: 2017-07-01</label>
             <label for="time" id="time">Uhrzeit 01:00</label></p>
-
     </div>
-
     <div id="mapcontainer"></div>
-
     <!--https://bootsnipp.com/snippets/featured/material-design-switch-->
     <ul class="list-group">
         <li class="list-group-item col-sm-6">
             Bev&ouml;lkerungtabelle anzeigen
-            <div class="material-switch pull-right ">
-                <input id="someSwitchOptionPrimary"  type="checkbox" onclick="toggleTable()"/>
-                <label for="someSwitchOptionPrimary" class="label-success"></label>
+            <div class="material-switch pull-right">
+                <input id="showTable" type="checkbox" onclick="toggleTable()"/>
+                <label for="showTable" class="label-success"></label>
             </div>
         </li>
         <li class="list-group-item col-sm-6">
             Bev&ouml;lkerung pro Kanton miteinbeziehen
             <div class="material-switch pull-right">
-                <input id="usePopulation"  name="usePopulation" type="checkbox" onclick="calculatePopulation()"/>
+                <input id="usePopulation" name="usePopulation" type="checkbox" onclick="calculatePopulation()"/>
                 <label for="usePopulation" class="label-success"></label>
             </div>
         </li>
@@ -62,7 +58,7 @@
     </table>
 
 
-    <form>
+    <form class="sliders">
         <div class="form-group">
             <div class="form-group row">
                 <label for="numberDay" class="col-sm-1 col-form-label">Tag:</label>
@@ -88,19 +84,9 @@
             </div>
 
         </div>
-        <!--<div class="col-sm-12">
-            <div class="form-group row">
-                <input type="range" class="form-control-range" id="rangeDay" max="31" min="1"
-                       onchange="rangeChange()"
-                       value="1"></div>
-            <div class="form-group row">
-                <input type="range" class="form-control-range" id="rangeHour" max="23" min="0"
-                       onchange="rangeChange()"
-                       value="0"></div>
-        </div>-->
         <!--<button type="button" id="diaShowButton" class="btn btn-primary btn-lg btn-block" onclick="diashow()"><i class="fa fa-play"></i></span>  Diashow</button>-->
-</div>
-</form>
+
+    </form>
 
 </div>
 
