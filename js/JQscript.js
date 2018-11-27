@@ -176,9 +176,13 @@ $(document).ready(function () {
 
 });
 
-function toggleTable() {
-    $("table").toggle("slow");
-}
+$(function() {
+    $('#showTable').change(function() {
+        $("table").toggle("slow");
+    })
+})
+
+
 
 let chart = Highcharts.mapChart('mapcontainer', {
     chart: {

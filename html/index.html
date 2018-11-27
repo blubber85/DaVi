@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" href="../css/material.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <link rel="stylesheet" href="../css/standard.css">
 </head>
 <body>
@@ -30,15 +31,15 @@
         <li class="list-group-item col-sm-6">
             Bev&ouml;lkerungtabelle anzeigen
             <div class="material-switch pull-right">
-                <input id="showTable" type="checkbox" onclick="toggleTable()"/>
-                <label for="showTable" class="label-success"></label>
+                <input type="checkbox" id="showTable">
             </div>
         </li>
         <li class="list-group-item col-sm-6">
             Bev&ouml;lkerung pro Kanton miteinbeziehen
             <div class="material-switch pull-right">
+                <!--<input id="usePopulation" name="usePopulation" type="checkbox" data-toggle="toggle" onclick="calculatePopulation()" data-height="75%">-->
                 <input id="usePopulation" name="usePopulation" type="checkbox" onclick="calculatePopulation()"/>
-                <label for="usePopulation" class="label-success"></label>
+
             </div>
         </li>
     </ul>
