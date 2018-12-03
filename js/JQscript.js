@@ -15,14 +15,72 @@ function animateDateTimeObj() {
 }
 
 
-function calculatePopulation() {
-    console.log("calculatePopulation: {}",$("input[name='usePopulation']:checked"));
-    var length = $("input[name='usePopulation']:checked").length;
-    console.log("calculatePopulation2: "+length );
-    //$("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
-    //$("#symbol").toggleClass("fa-times").toggleClass("fa-check");
-    update();
+$(function () {
+    $('#usePopulation').change(function () {
+        //console.log("calculatePopulation: {}", $("input[name='usePopulation']:checked"));
+        //var length = $("input[name='usePopulation']:checked").length;
+        //console.log("calculatePopulation2: " + length);
+        //$("#perBevoelkerung").toggleClass("btn-danger").toggleClass("btn-primary");
+        //$("#symbol").toggleClass("fa-times").toggleClass("fa-check");
+        update();
+    })
+})
 
+const doSleep = async () => {
+    await sleep(2000)
+}
+
+
+$(function () {
+    $('#diashow').change(function () {
+
+        let diaShowRun=false;
+
+        if ($("input[name='diashow']:checked").length) {
+            diaShowRun = true;
+            let actHour = $("#rangeHour").val();
+            let actDay = $("#rangeDay").val();
+            console.log("diashow start tag {} stunde{}",actDay, actHour);
+            if (checkDateTimeForDiashow()){
+                while (diaShowRun && checkDateTimeForDiashow()){
+                    countUpForDiashow();
+                    //update();
+                    //doSleep()
+                }
+                $("#diashow").prop("checked",false);
+            }
+        } else {
+            diaShowRun = false;
+            console.log("diashow stop");
+        }
+    })
+})
+
+
+function checkDateTimeForDiashow(){
+    let actHour = $("#rangeHour").val();
+    let actDay = $("#rangeDay").val();
+    if(actHour < 23){
+        console.log("checkDateTimeForDiashow() return true");
+        return true;
+    }
+    if (actDay < 31){
+        console.log("checkDateTimeForDiashow() return true");
+        return true;
+    }
+    console.log("checkDateTimeForDiashow() return false");
+    return false;
+}
+
+function countUpForDiashow(){
+    let actHour = $("#rangeHour").val();
+    let actDay = $("#rangeDay").val();
+    if(actHour < 23){
+        $("#rangeHour").val(++actHour);
+        return;
+    }
+    $("#rangeDay").val(++actDay);
+    $("#rangeHour").val(0);
 }
 
 function numberChange() {
@@ -173,15 +231,22 @@ $(document).ready(function () {
         $("tbody").append('<tr id=' + canton["kt"].toUpperCase() + ' > <td>' + canton["kt"].toUpperCase() + '</td> <td>' + canton["einwohner"] + '</td> <td id=td-' + canton["kt"].toUpperCase() + '></td></tr>');
     });
     $("table").hide();
+    $(".readmeBackground").hide();
 
 });
 
-$(function() {
-    $('#showTable').change(function() {
+$(function () {
+    $('#showTable').change(function () {
         $("table").toggle("slow");
     })
 })
 
+function showReadmeClicked(){
+    console.log("showReadmeClicked()");
+
+        $(".readmeBackground").toggle("slow");
+
+}
 
 
 let chart = Highcharts.mapChart('mapcontainer', {

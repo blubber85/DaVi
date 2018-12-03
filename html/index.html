@@ -27,22 +27,21 @@
     </div>
     <div id="mapcontainer"></div>
     <!--https://bootsnipp.com/snippets/featured/material-design-switch-->
-    <ul class="list-group">
-        <li class="list-group-item col-sm-6">
-            Bev&ouml;lkerungtabelle anzeigen
-            <div class="material-switch pull-right">
-                <input type="checkbox" id="showTable">
-            </div>
-        </li>
-        <li class="list-group-item col-sm-6">
-            Bev&ouml;lkerung pro Kanton miteinbeziehen
-            <div class="material-switch pull-right">
-                <!--<input id="usePopulation" name="usePopulation" type="checkbox" data-toggle="toggle" onclick="calculatePopulation()" data-height="75%">-->
-                <input id="usePopulation" name="usePopulation" type="checkbox" onclick="calculatePopulation()"/>
+    <!--http://www.bootstraptoggle.com/-->
+    <hr class="linien">
+    <div class="toggles">
+        <label class="checkbox-inline">
+            <input type="checkbox" data-toggle="toggle" id="showTable"> Bev&ouml;lkerungstabelle einblenden
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" data-toggle="toggle" name="usePopulation" id="usePopulation"> Bev&ouml;lkerung pro
+            Kanton miteinbeziehen
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" data-toggle="toggle" id="diashow" name="diashow" disabled="true"> Diashow
+        </label>
+    </div>
 
-            </div>
-        </li>
-    </ul>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -58,13 +57,15 @@
         </tbody>
     </table>
 
+    <hr class="linien">
 
     <form class="sliders">
         <div class="form-group">
             <div class="form-group row">
                 <label for="numberDay" class="col-sm-1 col-form-label">Tag:</label>
                 <div class="col-sm-1">
-                    <input type="number" class="form-control" id="numberDay" value="1" onchange="numberChange()">
+                    <input type="number" class="form-control" id="numberDay" value="1" onchange="numberChange()" min="1"
+                           max="31">
                 </div>
                 <div class="col-sm-10">
                     <input type="range" class="form-control-range" id="rangeDay" max="31" min="1"
@@ -76,19 +77,112 @@
                 <label for="numberHour" class="col-sm-1 col-form-label">Stunde:</label>
                 <div class="col-sm-1">
                     <input type="number" class="form-control" id="numberHour" placeholder="01"
-                           onchange="numberChange()">
+                           onchange="numberChange()" min="0" max="23">
                 </div>
                 <div class="col-sm-10">
                     <input type="range" class="form-control-range" id="rangeHour" max="23" min="0"
                            onchange="rangeChange()"
                            value="0"></div>
             </div>
-
         </div>
-        <!--<button type="button" id="diaShowButton" class="btn btn-primary btn-lg btn-block" onclick="diashow()"><i class="fa fa-play"></i></span>  Diashow</button>-->
-
     </form>
+    <hr class="linien">
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="showReadmeClicked()">Dokumentation
+        anzeigen
+    </button>
 
+
+    <div class="readmeBackground">
+        <div class="readme">
+            <h1 id="spezifizierungderdaten">Spezifizierung der Daten</h1>
+
+            <p>Für die Visualisierung wird der Datensatz Effektiver Datendownload pro Kanton und Stunde (Juli 2017) von
+                <a href="https://opendata.swisscom.com/explore/dataset/effektiver-datendownload-pro-kanton-und-stunde-de/api/?disjunctive.canton"
+                   title="Daten">opendata.swisscom.com</a>
+                verwendet. Der Datensatz ist frei verfügbar.
+                Er enthält 20088 Einträge für die 26 Kantone + Liechtenstein (insgesamt 27). Somit sind pro Kanton 744
+                Einträge vorhanden.</p>
+
+            <h2 id="beispieleinesdatensatzes">Beispiel eines Datensatzes</h2>
+
+            <pre><code class="json language-json">{
+  "nhits":20088,
+  "parameters":{
+    "dataset":[
+      "effektiver-datendownload-pro-kanton-und-stunde-de"
+    ],
+    "timezone":"UTC",
+    "rows":1,
+    "format":"json"
+  },
+  "records":[
+    {
+      "datasetid":"effektiver-datendownload-pro-kanton-und-stunde-de",
+      "recordid":"904e8afd74ef07a0bd4ca5a5c5108f65beffe0a3",
+      "fields":{
+        "effective_bytes_down_per_canton_per_hour_gb":28.824870626442134,
+        "effective_bytes_down_per_canton_per_hour_bytes":30950469163,
+        "timestamp_hour":"2017-07-11T17:00:00+00:00",
+        "canton":"AI"
+      },
+      "record_timestamp":"2017-10-19T07:10:11+00:00"
+    }
+  ]
+}
+</code></pre>
+
+            <p>Pro Eintrag ist jeweils der effektive Download in Bytes sowie in GB angegeben. Zusätzliche Informationen
+                sind
+                der Kanton sowie einen Timestamp.</p>
+
+            <h2 id="abrufexportderdaten">Abruf &amp; Export der Daten</h2>
+
+            <p>Die Daten können per CSV, JSON oder Excel exportiert werden. Zusätzlich kann ebenfalls die API
+                Schnittstelle
+                verwendet werden.
+                Die API eignet sich besonders, wenn man bereits vorsortierte Daten will (bspw. alle Kantone eines
+                Zeitpunktes).</p>
+
+            <h2 id="woherstammendiedaten">Woher stammen die Daten</h2>
+
+            <p>Der Datensatz beruht auf allen mobilen Daten der Swisscom in diesem Zeitraum. Jeder Antennenstandort
+                wurde
+                dem Kanton zugezählt in dem er steht.</p>
+
+            <h2 id="anzusprechendezielgruppemitdervisualisierung">Anzusprechende Zielgruppe mit der Visualisierung</h2>
+
+            <p>Mit der Visualisierung sollen alle Personen angesprochen werden, die ein technisches Flair haben und mit
+                den
+                Zahlen etwas anfangen können. </p>
+
+            <h2 id="erkenntnissedervisualisierung">Erkenntnisse der Visualisierung</h2>
+
+            <p>Anhand der Visualisierung soll der verschiedene Gebrauch des Internets zwischen den Kantonen dargestellt
+                werden. Daraus kann man auf das Verhalten der Bewohner im jeweiligen Kanton schliessen. Bspw. können
+                Hypothesen erstellt werden, bei welchen Kantonen die Bewohner früher ins Bett gehen.</p>
+
+            <h2 id="prototyp">Prototyp</h2>
+
+            <p>Ein erster
+                <a href="http://zueger.li/davi2/html/index.html" title="Daten">Prototyp</a>
+                kann hier begutachtet werden.</p>
+
+            <h2 id="validierung">Validierung</h2>
+
+            <p>Mit Hilfe der Anzahl lebender Personen pro Kanton, kann die Downloadmenge pro Kopf/Kanton ausgerechnet
+                werden. In dieser Ansicht zeigt sich ein homogenes Bild der Downloadmenge ab.
+                Folgende Fragenstellungen bleiben:</p>
+
+            <ul>
+                <li>Ist die prozentuale Anzahl Abonennten pro Kanton in etwa gleich oder</li>
+
+                <li>Ist die prozentuale Anzahl Abonennten in den ländlichen Kantonen grösser, dafür wird in den
+                    stätischen
+                    Kantonen mehr Daten bezogen? (Kann natürlich auch umgekehrt sein)
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <script src="../js/bevoelkerung.js"></script>

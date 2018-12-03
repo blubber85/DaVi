@@ -5,10 +5,9 @@
     margin: 0 auto;
 }
 
-
-table{
-    border: solid 1px ;
-    border-color:rgb(221, 221, 221);
+table {
+    border: solid 1px;
+    border-color: rgb(221, 221, 221);
     margin: 10px 0px;
 
 }
@@ -16,10 +15,9 @@ table{
 #uhrzeit {
     text-align: center;
     font-size: large;
-
 }
 
-#diaShowButton{
+#diaShowButton {
     margin-top: 10px;
 }
 
@@ -27,20 +25,32 @@ input[type="range"] {
     margin: 10px 0 0 0;
 }
 
-label {
-    margin: 6px 0 0 0 ;
-}
-
-#jumbotronBox{
+#jumbotronBox {
     padding: 10px 10px;
 }
-
-
 
 #dateTime {
     color: red;
 }
 
-.sliders{
-    margin-top: 10px;
+.toggles {
+    border-color: rgb(221, 221, 221);
+    padding: 10px;
+
+}
+
+.checkbox-inline+.checkbox-inline{
+    margin-left: 0px;
+}
+
+hr.linien {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+}
+
+.readme{
+    border-radius: 5px;
+    background-color: #eee;
+    padding-left: 10px;
+    padding-right: 10px;
 }

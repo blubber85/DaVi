@@ -56,3 +56,9 @@ Anhand der Visualisierung soll der verschiedene Gebrauch des Internets zwischen 
 Ein erster
 [Prototyp](http://zueger.li/davi2/html/index.html "Daten") 
 kann hier begutachtet werden.
+
+##Validierung
+Mit Hilfe der Anzahl lebender Personen pro Kanton, kann die Downloadmenge pro Kopf/Kanton ausgerechnet werden. In dieser Ansicht zeigt sich ein homogenes Bild der Downloadmenge ab. 
+Folgende Fragenstellungen bleiben:
+* Ist die prozentuale Anzahl Abonennten pro Kanton in etwa gleich oder
+* Ist die prozentuale Anzahl Abonennten in den ländlichen Kantonen grösser, dafür wird in den stätischen Kantonen mehr Daten bezogen? (Kann natürlich auch umgekehrt sein)
