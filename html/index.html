@@ -94,6 +94,7 @@
 
     <div class="readmeBackground">
         <div class="readme">
+
             <h1 id="spezifizierungderdaten">Spezifizierung der Daten</h1>
 
             <p>Für die Visualisierung wird der Datensatz Effektiver Datendownload pro Kanton und Stunde (Juli 2017) von
@@ -180,6 +181,21 @@
             <h2 id="sourcecode">Source Code</h2>
 
             <p>Der Source Code kann auf <a href="https://github.com/blubber85/DaVi/">GitHub</a> eingesehen werden.</p>
+
+            <h2 id="grundfrdeaktivierungderdiashow">Grund für Deaktivierung der Diashow</h2>
+
+            <p>Bei aktivierter Diashow wird die API von opendata.swisscom.com 744 x abgefragt (24h * 31 d = 744 ).
+                Da ohne ApiKey die Anzahl Abfragen auf 1000 per Monat begrenzt ist, kann dies genau 1x pro Monat (und
+                IP-Adresse) abgefragt werden. Danach erhält man eine Out of Quota Antwort (HTTP 429).</p>
+
+            <pre><code class="json language-json">{
+  "errorcode": 10006,
+  "reset_time": "2019-01-01T00:00:00Z",
+  "limit_time_unit": "month",
+  "call_limit": 1000,
+  "error": "You have exceeded your quota of 1000 api calls per month on this dataset."
+}
+</code></pre>
         </div>
     </div>
 </div>

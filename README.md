@@ -65,3 +65,16 @@ Folgende Fragenstellungen bleiben:
 
 ##Source Code
 Der Source Code kann auf [GitHub](https://github.com/blubber85/DaVi/) eingesehen werden.
+
+##Grund für Deaktivierung der Diashow
+Bei aktivierter Diashow wird die API von opendata.swisscom.com 744 x abgefragt (24h * 31 d = 744 ).
+Da ohne ApiKey die Anzahl Abfragen auf 1000 per Monat begrenzt ist, kann dies genau 1x pro Monat (und IP-Adresse) abgefragt werden. Danach erhält man eine Out of Quota Antwort (HTTP 429).
+```json
+{
+  "errorcode": 10006, 
+  "reset_time": "2019-01-01T00:00:00Z", 
+  "limit_time_unit": "month", 
+  "call_limit": 1000, 
+  "error": "You have exceeded your quota of 1000 api calls per month on this dataset."
+}
+```
